@@ -1,0 +1,85 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cloud Server</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
+    <style>
+        input, select, textarea {
+            color: #ffffff;
+        }
+        input::placeholder{
+            color: #ffffff;
+        }
+
+        textarea:focus, input:focus {
+            color: #ffffff;
+        }
+
+        body {
+            background-color: lightgrey;
+        }
+
+        h3 {
+            color: #ed2553;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row valign-wrapper">
+        <div class="col s8 offset-s2 valign">
+            <h3 class="center">Welcome to Our Server</h3>
+            <br>
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">Enter number of entries to be made in database</span>
+
+                    <form method="get" action="#">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="number" name="value" type="number" required>
+                                <label for="number">Number</label>
+                            </div>
+                            <div class="col s12">
+                                <button class="btn btn-lg waves-effect waves-light" type="submit" name="action">Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <p style="color: lightgrey">Current Count: {{ count }}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        function alertGenerate() {
+            let check = "{{ popup }}";
+            if (check === "True") {
+                alert("Entries have been added");
+            }
+        }
+
+        alertGenerate();
+    };
+
+
+</script>
+</body>
+</html>
